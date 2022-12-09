@@ -1,0 +1,31 @@
+# This file is used to exclude certain files and folders from your Git repository.
+# Add any files or folders that you want to exclude from your Git repository to this file.
+
+# Unity files and folders
+# ----------------------------------
+
+# Exclude the Library folder, which contains compiled code and other generated files
+/Library
+
+# Exclude the Temp folder, which contains temporary files 
+/Temp
+
+# Exclude the Assets/AssetStoreTools* folder, which contains tools for the Asset Store 
+/Assets/AssetStoreTools*
+
+# Exclude the ProjectSettings folder, which contains configuration files for the project 
+/ProjectSettings
+
+# Exclude the obj and bin folders, which are used for compiling the project
+/obj
+/bin
+
+# Exclude the .DS_Store files, which are used by macOS
+.DS_Store
+
+# Exclude the Thumbs.db files, which are used by Windows
+Thumbs.db
+
+# Exclude the files and folders that start with a period, such as .vs and .idea
+# These files and folders are typically used by IDEs and other development tools
+/.*

@@ -59,17 +59,15 @@ public class PlayerBehaviour : MonoBehaviour
 	private void ToggleFlashlight()
 	{
 		Debug.Log("Toggle Flashlight");
+		isFlashlightOn = !isFlashlightOn;
+		
 		if (isFlashlightOn)
 		{
-			Debug.Log("The flashlight is on.");
-			Flashlight.transform.Find("Spotlight").gameObject.GetComponent<Light>().intensity = 5.5f;  
+			Flashlight.transform.Find("Spotlight").gameObject.GetComponent<Light>().intensity = 5.5f;
+			return;
 		}
-		else
-		{
-			Debug.Log("The flashlight is off.");
-			Flashlight.transform.Find("Spotlight").gameObject.GetComponent<Light>().intensity = 0.0f;
-		}
-		isFlashlightOn = !isFlashlightOn;
+		
+		Flashlight.transform.Find("Spotlight").gameObject.GetComponent<Light>().intensity = 0.0f;
 	}
 	
 	void Update ()
@@ -166,8 +164,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         while (true)
         {
-	        if (!isFlashlightOn) continue;
             yield return new WaitForSeconds(time);
+            if (!isFlashlightOn) continue;
 
             Debug.Log("Removing baterry value: " + value);
 
