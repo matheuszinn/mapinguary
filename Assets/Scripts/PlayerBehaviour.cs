@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Net.Mime;
-using TMPro;
 // using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,11 +32,9 @@ public class PlayerBehaviour : MonoBehaviour
     public List<GameObject> pages = new List<GameObject>();
     public int collectedPages;
 
-    [Header("UI Settings")] 
-    public GameObject fakeCameraRenderer;
+    [Header("UI Settings")]
     public GameObject inGameMenuUI;
     public GameObject pickUpUI;
-    public GameObject noteContentUI;
     public GameObject finishedGameUI;
     public GameObject pagesCount;
     public bool paused;
@@ -56,29 +52,10 @@ public class PlayerBehaviour : MonoBehaviour
         batterySlider.GetComponent<Slider>().maxValue = batteryMax;
         batterySlider.GetComponent<Slider>().value = batteryMax;
 
-        noteContentUI.gameObject.GetComponentInChildren<Button>().onClick.AddListener(CloseNoteUI);
         // start consume flashlight battery
         StartCoroutine(RemoveBaterryCharge(removeBatteryValue, secondToRemoveBaterry));
     }
 
-    public void CloseNoteUI()
-    {
-        fakeCameraRenderer.SetActive(true);
-        Debug.Log("Closing Page UI");
-        noteContentUI.SetActive(false);
-        paused = false;
-    }
-
-    public void OpenNoteUI(GameObject noteGameObject)
-    {
-        var noteText = noteGameObject.gameObject.GetComponentInChildren<Text>().text;
-        noteContentUI.gameObject.GetComponentInChildren<TextMeshProUGUI>().text = noteText;
-        fakeCameraRenderer.SetActive(false);
-        Debug.Log("Opening Page UI");
-        noteContentUI.SetActive(true);
-        paused = true;
-    }
-    
 	private void ToggleFlashlight()
 	{
 		Debug.Log("Toggle Flashlight");
@@ -259,7 +236,7 @@ public class PlayerBehaviour : MonoBehaviour
     // page system - pickup system
     private void OnTriggerStay(Collider collider)
     {
-        if (collider.gameObject.transform.CompareTag("Page"))
+        if (collider.gameObject.transform.tag == "Page")
         {       
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -267,10 +244,7 @@ public class PlayerBehaviour : MonoBehaviour
 
                 // disable UI
                 pickUpUI.SetActive(false);
-                
-                // Open Note UI
-                OpenNoteUI(collider.gameObject);
-                
+
                 // add page to list
                 pages.Add(collider.gameObject);
                 collectedPages ++;
