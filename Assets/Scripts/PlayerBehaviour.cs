@@ -154,7 +154,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         // page system
-        pagesCount.GetComponent<Text>().text = "Collected Pages: " + collectedPages + "/8";
+        pagesCount.GetComponent<Text>().text = "Notas Coletadas: " + collectedPages + "/8";
 
         //animations
         if (Input.GetKey(KeyCode.LeftShift))
